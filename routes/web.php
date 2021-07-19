@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,12 @@ Route::get('about', function () {
     return view('about');
 });
 
+//For laravel 7 or below format . this is not work for laravel 8 . 
+// Route::get('/contact', 'ContactController@index' );
 
-Route::get('/contact', function () {
-    echo "This is contact Page ";
-});
+// For Laravel 8 
+Route::get('/contact',[ContactController::class,'index'] );
+
+// ContactController::class; It just returns the class name with namespace
+
+
