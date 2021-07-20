@@ -25,7 +25,7 @@ Route::get('/home', function () {
 
 Route::get('/about', function () {
     return view('about');
-})->middleware('check');  // if middleware return true , when render about page . 
+}); 
 
 //For laravel 7 or below format . this is not work for laravel 8 . 
 // Route::get('/contact', 'ContactController@index' );
