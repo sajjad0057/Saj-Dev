@@ -31,7 +31,7 @@ Route::get('/about', function () {
 // Route::get('/contact', 'ContactController@index' );
 
 // For Laravel 8 
-Route::get('/contact',[ContactController::class,'index'] );
+Route::get('/contact-fsjdj-fbsdgj',[ContactController::class,'index'] )->name('con');  // Named Routes
 
 // ContactController::class; It just returns the class name with namespace
 
