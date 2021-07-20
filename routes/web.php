@@ -36,3 +36,7 @@ Route::get('/contact-fsjdj-fbsdgj',[ContactController::class,'index'] )->name('c
 // ContactController::class; It just returns the class name with namespace
 
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
