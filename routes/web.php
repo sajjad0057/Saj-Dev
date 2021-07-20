@@ -18,10 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('about', function () {
-    return view('about');
+Route::get('/home', function () {
+    echo "This is home Page ";
 });
+
+
+Route::get('/about', function () {
+    return view('about');
+})->middleware('check');  // if middleware return true , when render about page . 
 
 //For laravel 7 or below format . this is not work for laravel 8 . 
 // Route::get('/contact', 'ContactController@index' );
