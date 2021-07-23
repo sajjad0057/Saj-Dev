@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use app\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,7 @@ Route::get('/contact-fsjdj-fbsdgj',[ContactController::class,'index'] )->name('c
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $users = User::all();
+
+    return view('dashboard',compact('users'));
 })->name('dashboard');
