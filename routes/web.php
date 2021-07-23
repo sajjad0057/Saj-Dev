@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\DB;
 use app\Models\User;
 
 /*
@@ -39,7 +40,9 @@ Route::get('/contact-fsjdj-fbsdgj',[ContactController::class,'index'] )->name('c
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $users = User::all();
+    //$users = User::all();  //Eloquent ORM
+
+    $users = DB::table('users')->get(); // Database: Query Builder
 
     return view('dashboard',compact('users'));
 })->name('dashboard');
