@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;  //using for Query Builder . 
 use app\Models\User;
 
 /*
@@ -39,10 +40,15 @@ Route::get('/contact-fsjdj-fbsdgj',[ContactController::class,'index'] )->name('c
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    //$users = User::all();  //Eloquent ORM
+//Category Controller :
 
-    $users = DB::table('users')->get(); // Database: Query Builder
+Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    $users = User::all();  //Eloquent ORM
+
+    //$users = DB::table('users')->get(); // Database: Query Builder
 
     return view('dashboard',compact('users'));
 })->name('dashboard');

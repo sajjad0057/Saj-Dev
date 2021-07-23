@@ -43,7 +43,7 @@
                 </div>
                 <h1>Dashboard Page</h1>
                 <a href="{{ url('/') }}">Dashboard </a> ||
-                <a href="{{ URL::to('/about') }}">About</a> ||
+                <a href="{{ url('/about') }}">About</a> ||
                 <a href="{{ route('con') }}">Contact</a> 
 
 
