@@ -49,8 +49,8 @@
               <form action="{{route('store.category')}}" method="POST">
                 @csrf
                   <div class="mb-3">
-                    <input type="text"  class="form-control" placeholder="Category Name" name="category-name">
-                    @error('category-name')
+                    <input type="text"  class="form-control" placeholder="Category Name" name="category_name">
+                    @error('category_name')
                         <span class="text-warning">{{ $message }}</span>
                     @enderror
                   </div>
@@ -61,13 +61,7 @@
             </div>
           </div>
         </div>
-        
-
       </div>
-
-
-
     </div>
-
   </div>
 </x-app-layout>

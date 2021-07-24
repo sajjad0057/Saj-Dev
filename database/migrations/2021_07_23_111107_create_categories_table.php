@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unique();
+            $table->integer('user_id');
             $table->string('category_name');
             $table->timestamps(); // for keeping create or update time record
             $table->softDeletes(); // for  keeping deleting time record

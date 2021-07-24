@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Carbon\Carbon;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -13,19 +16,25 @@ class CategoryController extends Controller
         return view('admin.category.index');
     }
 
-    public function AddCategory(Request $request)
+    public function AddCat(Request $request)
     {
-        $validated = $request->validate([
-            'category-name' => 'required|unique:categories|max:6',
-            //'field_name' => 'required|unique:table_name|max:maximum_length'
+        $validated = $request->validate(
+            [
+                'category_name' => 'required|unique:categories|max:6',
+                //'field_name' => 'required|unique:table_name|max:maximum_length'
 
-        ],
-        [   
-            // customized validation error message 
-            'category-name.required' => 'Please Set Category Name '
-            
-        ]
-    
-    );
+            ],
+
+        );
+
+        //Using Eloquent ORM 
+
+        Category::insert([
+            'category_name' => $request->category_name,
+            'user_id' => Auth::user()->id,
+            'created_at' => Carbon::now()
+        ]);
+
+
     }
 }
