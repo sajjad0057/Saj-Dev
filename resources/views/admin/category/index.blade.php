@@ -12,6 +12,13 @@
 
       <div class="row">
         <div class="col-md-8">
+          @if (session('success'))
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i>{{session('success')}}</i>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+              
+          @endif
           <div class="card">
             <div class="card-header text-center">
               All Category
