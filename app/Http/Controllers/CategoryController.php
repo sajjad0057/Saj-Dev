@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-// use Carbon\Carbon;
+//use Carbon\Carbon;
 use Auth;
-//use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -15,10 +14,16 @@ class CategoryController extends Controller
 
     public function AllCategory()
     {
-        return view('admin.category.index');
+        //Using Eloquent ORM read Data 
+        // $category = Category::all();
+        //sorting by latest data 
+        $category = Category::latest()->get();
+        return view('admin.category.index', compact('category'));
     }
 
-    public function AddCat(Request $request)
+
+
+    public function AddCategory(Request $request)
     {
         $validated = $request->validate(
             [
@@ -29,31 +34,31 @@ class CategoryController extends Controller
 
         );
 
-        //Using Eloquent ORM 
+        //Using Eloquent ORM insert Data 
 
         // Category::insert([
         //     'category_name' => $request->category_name,
         //     'user_id' => Auth::user()->id,
         //     'created_at' => Carbon::now()
         // ]);
-        
+
         //another style Eloquent ORM 
-        // $category = new Category;
-        // $category -> category_name = $request->category_name;
-        // $category -> user_id = Auth::user()->id;
-        // $category->save();
-
-        
-        //Using Query Builder 
-        
-        $data = array();
-        $data['category_name'] = $request->category_name;
-        $data['user_id'] = Auth::user()->id;
-        DB::table('categories')->insert($data);
+        $category = new Category;
+        $category -> category_name = $request->category_name;
+        $category -> user_id = Auth::user()->id;
+        $category->save();
 
 
+        //Using Query Builder  Insert Data
+
+        // $data = array();
+        // $data['category_name'] = $request->category_name;
+        // $data['user_id'] = Auth::user()->id;
+        // DB::table('categories')->insert($data);
 
 
-        return Redirect()->back()->with("success","Category Inserted Successfully");
+
+
+        return Redirect()->back()->with("success", "Category Inserted Successfully");
     }
 }
