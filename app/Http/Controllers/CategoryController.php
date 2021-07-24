@@ -29,12 +29,17 @@ class CategoryController extends Controller
 
         //Using Eloquent ORM 
 
-        Category::insert([
-            'category_name' => $request->category_name,
-            'user_id' => Auth::user()->id,
-            'created_at' => Carbon::now()
-        ]);
+        // Category::insert([
+        //     'category_name' => $request->category_name,
+        //     'user_id' => Auth::user()->id,
+        //     'created_at' => Carbon::now()
+        // ]);
 
+        //Using Query Builder
 
+        $category = new Category;
+        $category -> category_name = $request->category_name;
+        $category -> user_id = Auth::user()->id;
+        $category->save();
     }
 }
