@@ -40,7 +40,7 @@
                                     <th scope="row">{{ $i++ }}</th>
                                     <td>{{ $item->category_name }}</td>
                                     <td>{{ $item->user_id }}</td>
-                                    <td>{{ $item->created_at->diffForHumans() }}</td>
+                                    <td>{{ Carbon\carbon::parse($item->created_at)->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
 
