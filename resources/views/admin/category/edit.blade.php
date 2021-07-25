@@ -15,17 +15,18 @@
                     <div class="card">
                         <div class="card-header text-center">
                             <strong>Edit Category</strong>
+                            
                         </div>
                         <div class="card-body">
                             <form action="{{ route('store.update.category',['id'=>$category->id]) }}" method="POST">
                                 @csrf
                                 <div class="mb-3 form-group ">
-                                    <label class="mb-2 text-muted" for="update_category">Update Category Name</label>
+                                    <label class="mb-2 text-muted" for="category_name">Update Category Name</label>
                                     <input 
                                     type="text" 
                                     class="form-control" 
-                                    name="update_category"
-                                    id="update_category"
+                                    name="category_name"
+                                    id="category_name"
                                     value={{$category->category_name}}
                                     >
                                     @error('category_name')

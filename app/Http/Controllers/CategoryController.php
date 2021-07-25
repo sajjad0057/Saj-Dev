@@ -6,14 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 //use Carbon\Carbon;
 use Auth;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
     //
-
     public function AllCategory()
     {
         //Using Eloquent ORM read Data 
@@ -30,7 +28,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate(
             [
-                'category_name' => 'required|unique:categories|max:6',
+                'category_name' => 'required|unique:categories|max:64',
                 //'field_name' => 'required|unique:table_name|max:maximum_length'
 
             ],
@@ -48,7 +46,18 @@ class CategoryController extends Controller
 
     public function EditCategory($id)
     {
-        $category = Category::find($id);
+        // Eloquent ORM
+        // $category = Category::find($id);
+
+        //Query Builder 
+        $category = DB::table("categories")
+            ->where("id",$id)
+            ->first();
+        //echo $category;
+
+        //Query Builder 
+        // $category = DB::table('categories')->where('id',$id)->first();
+
         return view('admin.category.edit',compact('category'));
     }
 
@@ -56,10 +65,25 @@ class CategoryController extends Controller
 
     public function UpdateCategory(Request $request , $id)
     {
-       $update = Category::find($id)->update([
-           'category_name' => $request->update_category, // $request->form_field_name
-           'user_id' => Auth::user()->id,
-       ]);
+        $validated = $request->validate(
+            [
+                'category_name' => 'required|unique:categories|max:64',
+            ],
+
+        );
+        //Using Eloquent ORM
+    //    $update = Category::find($id)->update([
+    //        'category_name' => $request->category_name, // $request->form_field_name
+    //        'user_id' => Auth::user()->id,
+    //    ]);
+
+
+    // Using Query Builder : 
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['user_id'] = Auth::user()->id;
+        DB::table('categories')->where('id',$id)->update($data);
+
 
        return Redirect()->route('all.category')->with('success','Category Updated Successfully');
     }
