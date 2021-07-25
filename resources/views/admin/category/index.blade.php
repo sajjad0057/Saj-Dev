@@ -118,11 +118,11 @@
                                     <td>{{ $item->userRel->name }}</td>
                                     <td>{{ $item->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="{{ route('category.edit', ['id' => $item->id]) }}"
+                                        <a href="{{ route('category.restore', ['id' => $item->id]) }}"
                                             class="btn btn-outline-info">
                                             restore
                                         </a>
-                                        <a href="{{ route('category.delete', ['id' => $item->id]) }}"
+                                        <a href="{{ route('category.delete.parmanently', ['id' => $item->id]) }}"
                                             class="btn btn-outline-danger">
                                             delete parmanetly
                                         </a>

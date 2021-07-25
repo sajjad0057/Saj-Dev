@@ -52,6 +52,10 @@ Route::post('/category/update/{id}',[CategoryController::class,'UpdateCategory']
 
 Route::get('/category/delete/{id}',[CategoryController::class,'DeleteCategory'])->name('category.delete');
 
+Route::get('/category/delete-parmanently/{id}',[CategoryController::class,'DeleteCategoryParmantly'])->name('category.delete.parmanently');
+
+Route::get('/category/restore/{id}',[CategoryController::class,'RestoreCategory'])->name('category.restore');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();  //Eloquent ORM
