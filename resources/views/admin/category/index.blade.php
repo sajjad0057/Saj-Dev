@@ -35,18 +35,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php($i = 1) --}} 
+                            {{-- @php($i = 1) --}}
                             @foreach ($category as $item)
                                 <tr>
-                                    <th scope="row">{{ $category->firstItem()+$loop->index }}</th>
+                                    <th scope="row">{{ $category->firstItem() + $loop->index }}</th>
                                     <td>{{ $item->category_name }}</td>
                                     <td>{{ $item->userRel->name }}</td>
                                     <td>{{ $item->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="{{route('category.edit',['id'=>$item->id])}}" class="btn btn-outline-warning">
+                                        <a href="{{ route('category.edit', ['id' => $item->id]) }}"
+                                            class="btn btn-outline-warning">
                                             Edit
                                         </a>
-                                        <a href="{{route('category.delete',['id'=>$item->id])}}" class="btn btn-outline-danger">
+                                        <a href="{{ route('category.delete', ['id' => $item->id]) }}"
+                                            class="btn btn-outline-danger">
                                             delete
                                         </a>
                                     </td>
@@ -83,5 +85,61 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Trashed Part -->
+
+
+        <div class="container mt-5">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            Trashed List
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sl NO</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Created_at</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- @php($i = 1) --}}
+                            @foreach ($trashCategory as $item)
+                                <tr>
+                                    <th scope="row">{{ $trashCategory->firstItem() + $loop->index }}</th>
+                                    <td>{{ $item->category_name }}</td>
+                                    <td>{{ $item->userRel->name }}</td>
+                                    <td>{{ $item->created_at->diffForHumans() }}</td>
+                                    <td>
+                                        <a href="{{ route('category.edit', ['id' => $item->id]) }}"
+                                            class="btn btn-outline-info">
+                                            restore
+                                        </a>
+                                        <a href="{{ route('category.delete', ['id' => $item->id]) }}"
+                                            class="btn btn-outline-danger">
+                                            delete parmanetly
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                    {{ $trashCategory->links() }}
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </x-app-layout>

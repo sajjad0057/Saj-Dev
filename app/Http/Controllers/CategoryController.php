@@ -18,8 +18,9 @@ class CategoryController extends Controller
         // $category = Category::all();
         //sorting by latest data 
         $category = Category::latest()->paginate(4);
+        $trashCategory = Category::onlyTrashed()->latest()->paginate(2);
 
-        return view('admin.category.index', compact('category'));
+        return view('admin.category.index', compact('category','trashCategory'));
     }
 
 
@@ -47,12 +48,8 @@ class CategoryController extends Controller
     public function EditCategory($id)
     {
         // Eloquent ORM
-        // $category = Category::find($id);
+        $category = Category::find($id);
 
-        //Query Builder 
-        $category = DB::table("categories")
-            ->where("id",$id)
-            ->first();
         //echo $category;
 
         //Query Builder 
@@ -72,17 +69,17 @@ class CategoryController extends Controller
 
         );
         //Using Eloquent ORM
-    //    $update = Category::find($id)->update([
-    //        'category_name' => $request->category_name, // $request->form_field_name
-    //        'user_id' => Auth::user()->id,
-    //    ]);
+       $update = Category::find($id)->update([
+           'category_name' => $request->category_name, // $request->form_field_name
+           'user_id' => Auth::user()->id,
+       ]);
 
 
     // Using Query Builder : 
-        $data = array();
-        $data['category_name'] = $request->category_name;
-        $data['user_id'] = Auth::user()->id;
-        DB::table('categories')->where('id',$id)->update($data);
+        // $data = array();
+        // $data['category_name'] = $request->category_name;
+        // $data['user_id'] = Auth::user()->id;
+        // DB::table('categories')->where('id',$id)->update($data);
 
 
        return Redirect()->route('all.category')->with('success','Category Updated Successfully');
@@ -92,7 +89,10 @@ class CategoryController extends Controller
 
     public function DeleteCategory($id)
     {
-        $category = Category::find($id);
+        $delete = Category::find($id)->delete();
+
+        return Redirect()->back()->with('success','Category Temporary Delete Successfully  and Store Trashed');
+
     }
 
 
