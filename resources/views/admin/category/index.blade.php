@@ -34,18 +34,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php($i = 1)
+                            {{-- @php($i = 1) --}} 
                             @foreach ($category as $item)
                                 <tr>
-                                    <th scope="row">{{ $i++ }}</th>
+                                    <th scope="row">{{ $category->firstItem()+$loop->index }}</th>
                                     <td>{{ $item->category_name }}</td>
                                     <td>{{ $item->user_id }}</td>
-                                    <td>{{ Carbon\carbon::parse($item->created_at)->diffForHumans() }}</td>
+                                    <td>{{ $item->created_at->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
 
                         </tbody>
                     </table>
+                    {{ $category->links() }}
 
                 </div>
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 //use Carbon\Carbon;
 use Auth;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -17,10 +17,10 @@ class CategoryController extends Controller
         //Using Eloquent ORM read Data 
         // $category = Category::all();
         //sorting by latest data 
-        // $category = Category::latest()->get();
+        $category = Category::latest()->paginate(4);
 
         // Using Query Builder to Read data 
-        $category = DB::table("categories")->latest()->get();
+        // $category = DB::table("categories")->latest()->get();
 
 
         return view('admin.category.index', compact('category'));
