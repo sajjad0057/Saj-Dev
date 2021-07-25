@@ -39,8 +39,8 @@
                                 <tr>
                                     <th scope="row">{{ $category->firstItem()+$loop->index }}</th>
                                     <td>{{ $item->category_name }}</td>
-                                    <td>{{ $item->userRel->name }}</td>
-                                    <td>{{ $item->created_at->diffForHumans() }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ Carbon\carbon::parse($item->created_at)->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
 
