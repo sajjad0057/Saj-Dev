@@ -24,13 +24,14 @@
                             All Category
                         </div>
                     </div>
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover text-center">
                         <thead>
                             <tr>
                                 <th scope="col">Sl NO</th>
                                 <th scope="col">Category Name</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Created_at</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,8 +40,16 @@
                                 <tr>
                                     <th scope="row">{{ $category->firstItem()+$loop->index }}</th>
                                     <td>{{ $item->category_name }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ Carbon\carbon::parse($item->created_at)->diffForHumans() }}</td>
+                                    <td>{{ $item->userRel->name }}</td>
+                                    <td>{{ $item->created_at->diffForHumans() }}</td>
+                                    <td>
+                                        <a href="{{route('category.edit',['id'=>$item->id])}}" class="btn btn-outline-warning">
+                                            Edit
+                                        </a>
+                                        <a href="{{route('category.delete',['id'=>$item->id])}}" class="btn btn-outline-danger">
+                                            delete
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
 

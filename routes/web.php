@@ -46,6 +46,12 @@ Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all
 
 Route::post('/category/add',[CategoryController::class,'AddCategory'])->name('store.category');
 
+Route::get('/category/edit/{id}',[CategoryController::class,'EditCategory'])->name('category.edit');
+
+Route::post('/category/update/{id}',[CategoryController::class,'UpdateCategory'])->name('store.update.category');
+
+Route::get('/category/delete/{id}',[CategoryController::class,'DeleteCategory'])->name('category.delete');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();  //Eloquent ORM

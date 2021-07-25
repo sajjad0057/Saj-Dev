@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 //use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
@@ -17,14 +19,7 @@ class CategoryController extends Controller
         //Using Eloquent ORM read Data 
         // $category = Category::all();
         //sorting by latest data 
-        // $category = Category::latest()->paginate(4);
-
-        // Using Query Builder to Read data and Create Relation
-        $category = DB::table("categories")
-            ->join('users','categories.user_id','users.id')
-            ->select('categories.*','users.name')
-            ->latest()->paginate(4);
-
+        $category = Category::latest()->paginate(4);
 
         return view('admin.category.index', compact('category'));
     }
@@ -42,31 +37,41 @@ class CategoryController extends Controller
 
         );
 
-        //Using Eloquent ORM insert Data 
-
-        // Category::insert([
-        //     'category_name' => $request->category_name,
-        //     'user_id' => Auth::user()->id,
-        //     'created_at' => Carbon::now()
-        // ]);
-
         //another style Eloquent ORM 
         $category = new Category;
         $category -> category_name = $request->category_name;
         $category -> user_id = Auth::user()->id;
         $category->save();
-
-
-        //Using Query Builder  Insert Data
-
-        // $data = array();
-        // $data['category_name'] = $request->category_name;
-        // $data['user_id'] = Auth::user()->id;
-        // DB::table('categories')->insert($data);
-
-
-
-
         return Redirect()->back()->with("success", "Category Inserted Successfully");
+
     }
+
+    public function EditCategory($id)
+    {
+        $category = Category::find($id);
+        return view('admin.category.edit',compact('category'));
+    }
+
+
+
+    public function UpdateCategory(Request $request , $id)
+    {
+       $update = Category::find($id)->update([
+           'category_name' => $request->update_category, // $request->form_field_name
+           'user_id' => Auth::user()->id,
+       ]);
+
+       return Redirect()->route('all.category')->with('success','Category Updated Successfully');
+    }
+
+
+
+    public function DeleteCategory($id)
+    {
+        $category = Category::find($id);
+    }
+
+
+
+
 }
