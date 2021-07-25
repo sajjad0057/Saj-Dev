@@ -15,4 +15,9 @@ class Category extends Model
         'category_name',
     ];
 
+    public function userRel()
+    {
+        return $this->hasOne(User::class,'id','user_id'); // $this->relType(Model_name::class,'tb_field','another_tb_field')
+    }
+
 }

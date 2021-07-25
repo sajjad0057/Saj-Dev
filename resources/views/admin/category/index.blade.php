@@ -29,7 +29,7 @@
                             <tr>
                                 <th scope="col">Sl NO</th>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">User Id</th>
+                                <th scope="col">User</th>
                                 <th scope="col">Created_at</th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                                 <tr>
                                     <th scope="row">{{ $category->firstItem()+$loop->index }}</th>
                                     <td>{{ $item->category_name }}</td>
-                                    <td>{{ $item->user_id }}</td>
+                                    <td>{{ $item->userRel->name }}</td>
                                     <td>{{ $item->created_at->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
