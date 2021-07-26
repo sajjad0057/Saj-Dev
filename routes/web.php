@@ -3,7 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-//use Illuminate\Support\Facades\DB;  //using for Query Builder . 
+use App\Http\Controllers\BrandController;
 use app\Models\User;
 
 /*
@@ -40,7 +40,8 @@ Route::get('/contact',[ContactController::class,'index'] )->name('con');  // Nam
 
 
 
-//Category Controller :
+//Category  Controller :
+
 
 Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category');
 
@@ -55,6 +56,20 @@ Route::get('/category/delete/{id}',[CategoryController::class,'DeleteCategory'])
 Route::get('/category/delete-parmanently/{id}',[CategoryController::class,'DeleteCategoryParmantly'])->name('category.delete.parmanently');
 
 Route::get('/category/restore/{id}',[CategoryController::class,'RestoreCategory'])->name('category.restore');
+
+
+// Brand Controller  : 
+Route::get('/brand/all',[BrandController::class,'AllBrand'])->name('all.brand');
+
+Route::post('/brand/add',[BrandController::class,'AddBrand'])->name('store.brand');
+
+Route::get('/brand/edit/{id}',[BrandController::class,'EditBrand'])->name('brand.edit');
+
+Route::post('/brand/update/{id}',[BrandController::class,'UpdateBrand'])->name('store.update.brand');
+
+Route::get('/brand/delete/{id}',[BrandController::class,'DeleteBrand'])->name('brand.delete');
+
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
