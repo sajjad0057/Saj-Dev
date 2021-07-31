@@ -40,9 +40,11 @@
                                     <th scope="row">{{ $brands->firstItem()+$loop->index }}</th>
                                     <td>{{ $brand-> brand_name }}</td>
                                     <td>
-                                        {{-- <img src="{{ $brand-> brand_image }}" alt=""> --}}
+                                        <center>
+                                            <img src="{{ asset($brand-> brand_image ) }}" alt="image" style="height: 40px; width:70px;">
+                                        </center>
                                     </td>
-                                    <td>{{ $brand-> created_at}}</td>
+                                    <td>{{ $brand-> created_at->diffForHumans()}}</td>
                                     <td>
                                         <a href="{{route('brand.edit',['id'=>$brand->id])}}" class="btn btn-outline-warning">
                                             Edit
@@ -65,7 +67,7 @@
                             Add Brand
                         </div>
                         <div class="card-body">
-                            <form action="{{route('store.brand')}}" method="POST">
+                            <form action="{{route('store.brand')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3 form-group">
                                     <input type="text" class="form-control" placeholder="Brand Name" name="brand_name">
@@ -75,7 +77,7 @@
                                 </div>
                                 <div class="mb-3 form-group">
                                     <label for="brand_image">Brand Image</label>
-                                    <input type="file" class="form-control" name="brand_Image">
+                                    <input type="file" class="form-control" name="brand_image">
                                     @error('brand_image')
                                         <span class="text-warning">{{ $message }}</span>
                                     @enderror
