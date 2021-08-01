@@ -15,6 +15,8 @@ class BrandController extends Controller
         return view('admin.brand.index', compact('brands'));
     }
 
+
+
     public function AddBrand(Request $request)
     {
         $validated = $request->validate(
@@ -42,11 +44,15 @@ class BrandController extends Controller
         return Redirect()->back()->with('success', 'Brand Inserted Successfully !');
     }
 
+
+
     public function EditBrand($id)
     {
         $brand = Brand::find($id);
         return view('admin.brand.edit', compact('brand'));
     }
+
+
 
 
     public function UpdateBrand(Request $request, $id)
@@ -84,5 +90,17 @@ class BrandController extends Controller
             ]);
             return Redirect()->route('all.brand')->with('success', 'Brand Updated Successfully !');
         }
+    }
+
+
+
+    public function DeleteBrand($id)
+    {   
+        $brand = Brand::find($id);
+        $old_img = $brand->brand_image;
+        unlink($old_img);
+        $brand->delete();
+
+         return Redirect()->back()->with("success","Brand Deleted Successfully !");
     }
 }
