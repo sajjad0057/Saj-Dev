@@ -77,12 +77,10 @@ class BrandController extends Controller
         $brand_image = $request->file('brand_image');
 
         if ($brand_image) {
-            $name_gen = hexdec(uniqid()); //generate unique Id .
-            $img_ext = strtolower($brand_image->getClientOriginalExtension()); //to get file extension
-            $img_name = $name_gen . '.' . $img_ext; // string concate
-            $upload_location = 'image/brand/';
-            $last_img = $upload_location . $img_name;
-            $brand_image->move($upload_location, $img_name);
+            //using image.intervention packages manage image size - 
+            $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();//generate unique Id . and concate with  image extension .
+            Image::make($brand_image)->resize(300,200)->save('image/brand/'.$name_gen);
+            $last_img = 'image/brand/'. $name_gen ;
 
             unlink($old_img);  // remove old image 
 
