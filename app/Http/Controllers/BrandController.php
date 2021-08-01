@@ -40,7 +40,7 @@ class BrandController extends Controller
         //using image.intervention packages manage image size - 
         $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();//generate unique Id . and concate with  image extension .
         Image::make($brand_image)->resize(300,200)->save('image/brand/'.$name_gen);
-        $last_img = 'image/brand/'. $name_gen ;
+        $last_img = 'image/brand/'.$name_gen ;
 
 
 
@@ -110,4 +110,7 @@ class BrandController extends Controller
 
          return Redirect()->back()->with("success","Brand Deleted Successfully !");
     }
+
+
+
 }
