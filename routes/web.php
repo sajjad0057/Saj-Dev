@@ -44,7 +44,7 @@ Route::get('/about', function () {
 // Route::get('/contact', 'ContactController@index' );
 
 // For Laravel 8 
-Route::get('/contact',[ContactController::class,'index'] )->name('con');  // Named Routes
+Route::get('/contact',[ContactController::class,'index'] )->name('contact');  // Named Routes
 
 // ContactController::class; It just returns the class name with namespace
 
@@ -53,7 +53,7 @@ Route::get('/contact',[ContactController::class,'index'] )->name('con');  // Nam
 //Category  Controller :
 
 
-Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category');
+Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category')->middleware('auth');
 
 Route::post('/category/add',[CategoryController::class,'AddCategory'])->name('store.category');
 

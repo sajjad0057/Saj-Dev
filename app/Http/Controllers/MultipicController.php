@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Redirect;
 use Image;
 
 class MultipicController extends Controller
-{
+{   
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // handle multi image all method 
 
     public function MultiImage()
