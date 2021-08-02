@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\MultipicController;
+use App\Http\Controllers\AuthController;
 use app\Models\User;
 
 /*
@@ -88,6 +89,9 @@ Route::post('/store/image',[MultipicController::class,'AddMultiImage'])->name('s
 
 
 
+
+// Authentication 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     //$users = User::all();  //Eloquent ORM
 
@@ -95,3 +99,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     return view('admin.index',);
 })->name('dashboard');
+
+
+
+Route::get('/user/logout',[AuthController::class,'Logout'])->name('user.logout');
