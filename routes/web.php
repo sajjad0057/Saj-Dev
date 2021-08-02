@@ -89,9 +89,9 @@ Route::post('/store/image',[MultipicController::class,'AddMultiImage'])->name('s
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $users = User::all();  //Eloquent ORM
+    //$users = User::all();  //Eloquent ORM
 
     //$users = DB::table('users')->get(); // Database: Query Builder
 
-    return view('dashboard',compact('users'));
+    return view('admin.index',);
 })->name('dashboard');
