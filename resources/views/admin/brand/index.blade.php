@@ -1,15 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <b class="text-muted"></b>
-            <b style="float: right;">
-            </b>
-        </h2>
-    </x-slot>
+@extends('admin.admin_master')
+@section('admin')
 
     <div class="py-12">
         <div class="container">
-
             <div class="row">
                 <div class="col-md-8">
                     @if (session('success'))
@@ -24,6 +17,7 @@
                             All Brand
                         </div>
                     </div>
+                    {{-- {{var_dump($brands);}} --}}
                     <table class="table table-striped table-hover text-center">
                         <thead>
                             <tr>
@@ -37,7 +31,7 @@
                         <tbody>
                             @foreach ($brands as $brand)
                                 <tr>
-                                    <th scope="row">{{ $brands->firstItem() + $loop->index }}</th>
+                                    <th scope="row">{{ $brand->id}}</th>
                                     <td>{{ $brand->brand_name }}</td>
                                     <td>
                                         <center>
@@ -63,7 +57,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $brands->links() }}
+
+                  
+
+                    {{-- {{ $brands->links() }} --}}
 
                 </div>
 
@@ -99,4 +96,4 @@
         </div>
 
     </div>
-</x-app-layout>
+@endsection

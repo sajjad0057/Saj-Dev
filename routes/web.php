@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\MultipicController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use app\Models\User;
 
 /*
@@ -28,9 +29,7 @@ Route::get('/email/verify', function () {
 
 
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class,'AllData']);
 
 Route::get('/home', function () {
     echo "This is home Page ";

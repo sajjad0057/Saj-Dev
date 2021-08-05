@@ -1,21 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <b class="text-muted"></b>
-            <b style="float: right;">
-            </b>
-        </h2>
-    </x-slot>
+@extends('admin.admin_master')
+@section('admin')
 
-    <div class="py-12">
+<div class="py-12">
         <div class="container">
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            <strong>Edit Brand</strong>
-                            
+                            <strong>Edit Brand</strong>                            
                         </div>
                         <div class="card-body">
                             <form action="{{ route('store.update.brand',['id'=>$brand->id]) }}" enctype="multipart/form-data" method="POST">
@@ -28,7 +21,7 @@
                                     class="form-control" 
                                     name="brand_name"
                                     id="brand_name"
-                                    value={{$brand->brand_name}}
+                                    value={{$brand['brand_name']}}
                                     >
                                     @error('brand_name')
                                         <span class="text-warning">{{ $message }}</span>
@@ -44,7 +37,7 @@
                                     class="form-control" 
                                     name="brand_image"
                                     id="brand_image"
-                                    value={{$brand->brand_image}}
+                                    value={{$brand['brand_image']}}
                                     >
                                     @error('brand_image')
                                         <span class="text-warning">{{ $message }}</span>
@@ -61,4 +54,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+   
+@endsection
