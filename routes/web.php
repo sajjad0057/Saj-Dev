@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\MultipicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SlideController;
 use app\Models\User;
 
 /*
@@ -85,6 +86,20 @@ Route::get('/brand/delete/{id}',[BrandController::class,'DeleteBrand'])->name('b
 Route::get('/all/images',[MultipicController::class,'MultiImage'])->name('multi.image');
 
 Route::post('/store/image',[MultipicController::class,'AddMultiImage'])->name('store.multi.image');
+
+
+
+// Slider 
+
+Route::get('/slide/all',[SlideController::class,'AllSlide'])->name('all.slide');
+
+Route::post('/slide/add',[SlideController::class,'AddSlide'])->name('store.slide');
+
+Route::get('/slide/edit/{id}',[SlideController::class,'EditSlide'])->name('slide.edit');
+
+Route::post('/slide/update/{id}',[SlideController::class,'UpdateSlide'])->name('store.update.slide');
+
+Route::get('/slide/delete/{id}',[SlideController::class,'DeleteSlide'])->name('slide.delete');
 
 
 
