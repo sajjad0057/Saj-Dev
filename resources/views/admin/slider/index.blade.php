@@ -4,7 +4,7 @@
     <div class="py-12">
         <div class="container">
             <div class="text-right mb-4">
-                <a href="#" class="btn btn-outline-success"> ADD SLIDE </a>
+                <a href="{{ route('add.slide') }}" class="btn btn-outline-success"> ADD SLIDE </a>
 
             </div>
             <div class="row">
@@ -23,6 +23,12 @@
                     </div>
                     {{-- {{var_dump($brands);}} --}}
                     <table class="table table-striped table-hover text-center">
+                        <col style="width:5%">
+                        <col style="width:10%">
+                        <col style="width:40%">
+                        <col style="width:15%">
+                        <col style="width:10%">
+                        <col style="width:20%">
                         <thead>
                             <tr>
                                 <th scope="col">Sl NO</th>
@@ -69,41 +75,8 @@
                     {{-- {{ $brands->links() }} --}}
 
                 </div>
-{{-- 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            Add Slide
-                        </div>
-                        <div class="card-body">
-                            <form action="{{ route('store.slide') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="mb-3 form-group">
-                                    <input type="text" class="form-control" placeholder="Slide Title" name="slide_title">
-                                    @error('slide_title')
-                                        <span class="text-warning">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 form-group">
-                                    <input type="text" class="form-control" placeholder="Slide Description" name="slide_description">
-                                    @error('slide_description')
-                                        <span class="text-warning">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="mb-3 form-group">
-                                    <label for="brand_image">Slide Image</label>
-                                    <input type="file" class="form-control" name="slide_image">
-                                    @error('slide_image')
-                                        <span class="text-warning">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-outline-secondary">Add Slide</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> --}}
+ 
+ 
             </div>
         </div>
 

@@ -93,7 +93,9 @@ Route::post('/store/image',[MultipicController::class,'AddMultiImage'])->name('s
 
 Route::get('/slide/all',[SlideController::class,'AllSlide'])->name('all.slide');
 
-Route::post('/slide/add',[SlideController::class,'AddSlide'])->name('store.slide');
+Route::get('/slide/add',[SlideController::class,'AddSlide'])->name('add.slide');
+
+Route::post('/slide/store',[SlideController::class,'StoreSlide'])->name('store.slide');
 
 Route::get('/slide/edit/{id}',[SlideController::class,'EditSlide'])->name('slide.edit');
 
