@@ -21,7 +21,7 @@
                                     class="form-control" 
                                     name="brand_name"
                                     id="brand_name"
-                                    value={{$brand['brand_name']}}
+                                    value={{$brand->brand_name}}
                                     >
                                     @error('brand_name')
                                         <span class="text-warning">{{ $message }}</span>
@@ -37,7 +37,6 @@
                                     class="form-control" 
                                     name="brand_image"
                                     id="brand_image"
-                                    value={{$brand['brand_image']}}
                                     >
                                     @error('brand_image')
                                         <span class="text-warning">{{ $message }}</span>
