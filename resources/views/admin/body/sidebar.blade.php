@@ -40,7 +40,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="sidenav-item-link" href="analytics.html">
+                                    <a class="sidenav-item-link" href="{{ route('all.about') }}">
                                         <span class="nav-text">Home About</span>
 
                                         <span class="badge badge-success">new</span>

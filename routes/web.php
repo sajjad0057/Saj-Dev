@@ -8,6 +8,7 @@ use App\Http\Controllers\MultipicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\AboutController;
 use app\Models\User;
 
 /*
@@ -102,6 +103,28 @@ Route::get('/slide/edit/{id}',[SlideController::class,'EditSlide'])->name('slide
 Route::post('/slide/update/{id}',[SlideController::class,'UpdateSlide'])->name('store.update.slide');
 
 Route::get('/slide/delete/{id}',[SlideController::class,'DeleteSlide'])->name('slide.delete');
+
+
+// About 
+// Group Route : 
+
+Route::prefix('/about')->group(function (){
+
+    Route::get('/all',[AboutController::class,'AllAbout'])->name('all.about');
+
+    Route::get('/add',[AboutController::class,'AddAbout'])->name('add.about');
+
+    Route::post('/store',[AboutController::class,'StoreAbout'])->name('store.about');
+    
+    Route::get('/edit/{id}',[AboutController::class,'EditAbout'])->name('about.edit');
+    
+    Route::post('/update/{id}',[AboutController::class,'UpdateAbout'])->name('store.update.about');
+    
+    Route::get('/delete/{id}',[AboutController::class,'DeleteAbout'])->name('about.delete');
+
+});
+
+
 
 
 
