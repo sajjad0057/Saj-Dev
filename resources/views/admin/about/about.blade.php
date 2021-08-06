@@ -38,9 +38,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php($i = 1)
+                                
+                            
                             @foreach ($abouts as $about)
                                 <tr>
-                                    <th scope="row">{{ $about->id}}</th>
+                                    <th scope="row">{{ $i++}}</th>
                                     <td>{{ $about->title }}</td>
                                     <td>{{ $about->short_description }}</td>
                                     <td>{{ $about->long_description }}</td>
