@@ -31,7 +31,7 @@ Route::get('/email/verify', function () {
 
 
 
-Route::get('/', [HomeController::class,'AllData']);
+Route::get('/', [HomeController::class,'AllData'])->name('home');
 
 Route::get('/home', function () {
     echo "This is home Page ";
@@ -41,15 +41,6 @@ Route::get('/home', function () {
 Route::get('/about', function () {
     return view('about');
 }); 
-
-//For laravel 7 or below format . this is not work for laravel 8 . 
-// Route::get('/contact', 'ContactController@index' );
-
-// For Laravel 8 
-Route::get('/contact',[ContactController::class,'index'] )->name('contact');  // Named Routes
-
-// ContactController::class; It just returns the class name with namespace
-
 
 
 //Category  Controller :
@@ -121,6 +112,28 @@ Route::prefix('/about')->group(function (){
     Route::post('/update/{id}',[AboutController::class,'UpdateAbout'])->name('store.update.about');
     
     Route::get('/delete/{id}',[AboutController::class,'DeleteAbout'])->name('about.delete');
+
+});
+
+
+// Contact Profile 
+
+Route::prefix('/contact')->group(function (){
+
+
+    Route::get('/',[ContactController::class,'Contact'])->name('contact');
+
+    Route::get('/all',[ContactController::class,'AllContact'])->name('all.contact');
+
+    Route::post('/store',[ContactController::class,'StoreContact'])->name('store.contact');
+    
+    Route::get('/edit/{id}',[ContactController::class,'EditContact'])->name('contact.edit');
+    
+    Route::post('/update/{id}',[ContactController::class,'UpdateContact'])->name('store.update.contact');
+    
+    Route::get('/delete/{id}',[ContactController::class,'DeleteContact'])->name('contact.delete');
+
+    Route::get('/message',[ContactController::class,'ContactMessage'])->name('contact.message');
 
 });
 
