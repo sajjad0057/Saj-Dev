@@ -31,7 +31,7 @@
                         <tbody>
                             @foreach ($brands as $brand)
                                 <tr>
-                                    <th scope="row">{{ $brand->id}}</th>
+                                    <th scope="row">{{ $brands->firstItem() + $loop->index}}</th>
                                     <td>{{ $brand->brand_name }}</td>
                                     <td>
                                         <center>
@@ -60,7 +60,7 @@
 
                   
 
-                    {{-- {{ $brands->links() }} --}}
+                    {{ $brands->links('vendor.pagination.bootstrap-4') }}
 
                 </div>
 

@@ -48,7 +48,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="sidenav-item-link" href="analytics.html">
+                                    <a class="sidenav-item-link" href="{{ route('multi.image') }}">
                                         <span class="nav-text">Home Portfolio</span>
 
                                         <span class="badge badge-success">new</span>
