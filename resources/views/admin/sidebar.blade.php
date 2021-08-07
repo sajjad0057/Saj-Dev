@@ -43,7 +43,7 @@
                                     <a class="sidenav-item-link" href="{{ route('all.about') }}">
                                         <span class="nav-text">Home About</span>
 
-                                        <span class="badge badge-success">new</span>
+                                        {{-- <span class="badge badge-success">new</span> --}}
 
                                     </a>
                                 </li>
@@ -51,7 +51,7 @@
                                     <a class="sidenav-item-link" href="{{ route('multi.image') }}">
                                         <span class="nav-text">Home Portfolio</span>
 
-                                        <span class="badge badge-success">new</span>
+                                        {{-- <span class="badge badge-success">new</span> --}}
 
                                     </a>
                                 </li>
@@ -59,7 +59,7 @@
                                     <a class="sidenav-item-link" href=" {{route('all.brand')}} ">
                                         <span class="nav-text">Home Brand</span>
 
-                                        <span class="badge badge-success">new</span>
+                                        {{-- <span class="badge badge-success">new</span> --}}
 
                                     </a>
                                 </li>

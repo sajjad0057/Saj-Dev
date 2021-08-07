@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Brand;
-use App\Models\Slider;
+use App\Models\Multipic;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +13,8 @@ class HomeController extends Controller
     {
         $brands = Brand::all();
         $abouts = About::all();
+        $images = Multipic::all();
 
-        return view('home',compact('brands','abouts'));
+        return view('home',compact('brands','abouts','images'));
     }
 }
