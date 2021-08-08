@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ProfileInfoManageController;
 use app\Models\User;
 
 /*
@@ -123,21 +124,31 @@ Route::prefix('/contact')->group(function (){
 
     Route::get('/',[ContactController::class,'Contact'])->name('contact');
 
-    Route::get('/all',[ContactController::class,'AllContact'])->name('all.contact');
+    Route::get('/all',[ContactController::class,'AllContact'])->name('all.contact')->middleware('auth');
 
-    Route::post('/store',[ContactController::class,'StoreContact'])->name('store.contact');
+    Route::post('/store',[ContactController::class,'StoreContact'])->name('store.contact')->middleware('auth');
     
-    Route::get('/edit/{id}',[ContactController::class,'EditContact'])->name('contact.edit');
+    Route::get('/edit/{id}',[ContactController::class,'EditContact'])->name('contact.edit')->middleware('auth');
     
-    Route::post('/update/{id}',[ContactController::class,'UpdateContact'])->name('store.update.contact');
+    Route::post('/update/{id}',[ContactController::class,'UpdateContact'])->name('store.update.contact')->middleware('auth');
     
-    Route::get('/delete/{id}',[ContactController::class,'DeleteContact'])->name('contact.delete');
+    Route::get('/delete/{id}',[ContactController::class,'DeleteContact'])->name('contact.delete')->middleware('auth');
 
-    Route::get('/message',[ContactController::class,'ContactMessage'])->name('contact.message');
+    Route::get('/message',[ContactController::class,'ContactMessage'])->name('contact.message')->middleware('auth');
 
 });
 
 
+
+// update profile info : 
+
+Route::prefix('/profile')->group(function (){
+
+
+    Route::get('/password',[ProfileInfoManageController::class,'ChangePassword'])->name('change.password');
+
+
+});
 
 
 
@@ -145,10 +156,6 @@ Route::prefix('/contact')->group(function (){
 // Authentication 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    //$users = User::all();  //Eloquent ORM
-
-    //$users = DB::table('users')->get(); // Database: Query Builder
-
     return view('admin.index',);
 })->name('dashboard');
 
