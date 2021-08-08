@@ -147,6 +147,11 @@ Route::prefix('/profile')->group(function (){
 
     Route::get('/password',[ProfileInfoManageController::class,'ChangePassword'])->name('change.password');
 
+    Route::any('/password-update',[ProfileInfoManageController::class,'UpdatePassword'])->name('password.update');
+
+    Route::get('/info',[ProfileInfoManageController::class,'UserProfile'])->name('user.profile');
+    Route::post('/info',[ProfileInfoManageController::class,'UpdateProfile'])->name('update.profile');
+
 
 });
 

@@ -50,8 +50,16 @@
 <body class="bg-light-gray" id="body">
     <div class="container d-flex flex-column justify-content-between vh-100">
         <div class="row justify-content-center mt-5">
+
             <div class="col-xl-5 col-lg-6 col-md-10">
                 <div class="card">
+                    @if (session('success'))
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <i>{{ session('success') }}</i>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    @endif
                     <div class="card-header bg-primary">
                         <div class="app-brand">
                             <a href="/index.html">
@@ -67,11 +75,11 @@
                         </div>
                     </div>
                     <div class="card-body p-5">
-                            @if (session('status'))
-                                <div class="mb-4 font-medium text-sm text-green-600">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
+                        @if (session('status'))
+                            <div class="mb-4 font-medium text-sm text-green-600">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <h4 class="text-dark mb-5">Sign In</h4>
 
                         <form method="POST" action="{{ route('login') }}">
